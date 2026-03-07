@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Github Issues Tracker</title>
+    <!-- google font connected  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <!-- tailwind and daisyui connected -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="assets/github-logo.png" type="image/x-icon">
+
+</head>
+
+<body>
+    <header class="shadow-lg lg:py-3">
+        <div class="navbar bg-base-100 lg:px-8 mx-auto">
+            <div class="flex-1">
+                <div class="flex items-center gap-2">
+                    <div class="w-9">
+                        <img class="w-full" src="assets/github-logo.png" alt="">
+                    </div>
+                    <span class="lg:text-2xl font-semibold">Github Issues Tracker</span>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+                <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="lg:mt-18 mt-10 px-2 lg:w-5/6 mx-auto">
+        <section class="lg:py-4 px-2 shadow-sm flex items-center lg:gap-4 gap-2">
+            <button onclick="toggolBtn('allBtn')" id="allBtn" class="btn btn-outline btn-primary active lg:px-10">All</button>
+            <button onclick="toggolBtn('openBtn')" id="openBtn" class="btn btn-outline btn-primary lg:px-10">Open</button>
+            <button onclick="toggolBtn('closedBtn')" id="closedBtn" class="btn btn-outline btn-primary lg:px-10">Closed</button>
+        </section>
+        <section class="mt-5 flex items-center shadow-sm lg:p-2 justify-between">
+            <div class="flex items-center gap-2 lg:gap-4">
+                <div>
+
+                    <img src="assets/Aperture.png" alt="">
+                </div>
+                <div id="countissue">
+                    
+                </div>
+            </div>
+            <div class="lg:space-x-3">
+                <span class="font-medium text-[#00A96E]"><i class="fa-solid fa-circle"></i> <span
+                        class="text-black">Open</span></span>
+                <span class="font-medium text-[#A855F7]"><i class="fa-solid fa-circle"></i> <span
+                        class="text-black">Closed</span></span>
+
+            </div>
+        </section>
+
+        <section id="allIssues" class="mt-6 p-2 grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-5">
+            
+            
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
