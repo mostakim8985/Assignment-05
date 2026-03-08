@@ -52,7 +52,7 @@ const allIssues = (issues) => {
         const div = document.createElement('div');
         if (issue.status != 'open') {
             div.innerHTML = `
-        <div id="statusBy${issue.id}"  class="shadow shadow-green-950 border-t-5 border-blue-700 p-4 rounded-xl space-y-4 h-full">
+        <div id="statusBy${issue.id}" onclick="loadModalInfo(${issue.id})" class="shadow shadow-green-950 border-t-5 border-blue-700 p-4 rounded-xl space-y-4 h-full">
                 <div class="flex items-center justify-between">
                     <img src="assets/Closed- Status .png" alt="">
                     <span class="badge badge-outline badge-error">${issue.priority}</span>
@@ -82,7 +82,7 @@ const allIssues = (issues) => {
         }
         else {
             div.innerHTML = `
-        <div id="statusBy${issue.id}" onclick="my_modal_5.showModal()" class="shadow shadow-green-950 border-t-5 border-green-700 p-4 rounded-xl space-y-4 h-full">
+        <div id="statusBy${issue.id}" onclick="loadModalInfo(${issue.id})" class="shadow shadow-green-950 border-t-5 border-green-700 p-4 rounded-xl space-y-4 h-full">
                 <div class="flex items-center justify-between">
                     <img src="assets/Open-Status.png" alt="">
                     <span class="badge badge-outline badge-error">${issue.priority}</span>
@@ -193,7 +193,7 @@ const openIssues = (data) => {
         if (issue.status == 'open') {
             count++;
             div.innerHTML = `
-        <div id="statusBy${issue.id}" onclick="my_modal_5.showModal()" class="shadow shadow-green-950 border-t-5 border-green-700 p-4 rounded-xl space-y-4 h-full">
+        <div id="statusBy${issue.id}" onclick="loadModalInfo(${issue.id})" class="shadow shadow-green-950 border-t-5 border-green-700 p-4 rounded-xl space-y-4 h-full">
                 <div class="flex items-center justify-between">
                     <img src="assets/Open-Status.png" alt="">
                     <span class="badge badge-outline badge-error">${issue.priority}</span>
@@ -262,7 +262,7 @@ const ClosedIssues = (data) => {
         if (issue.status != 'open') {
             count++;
             div.innerHTML = `
-        <div id="statusBy${issue.id}" onclick="my_modal_5.showModal()" class="shadow shadow-green-950 border-t-5 border-blue-700 p-4 rounded-xl space-y-4 h-full">
+        <div id="statusBy${issue.id}" onclick="loadModalInfo(${issue.id})" class="shadow shadow-green-950 border-t-5 border-blue-700 p-4 rounded-xl space-y-4 h-full">
                 <div class="flex items-center justify-between">
                     <img src="assets/Closed- Status .png" alt="">
                     <span class="badge badge-outline badge-error">${issue.priority}</span>
@@ -313,3 +313,23 @@ async function loadSearch(input) {
 }
 
 
+
+
+const loadModalInfo = (id) =>{
+const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
+fetch(url)
+.then((res)=> res.json())
+.then((json)=> loadModal(json.data))
+}
+
+
+const loadModal = (input) => {
+const modalInfo = document.getElementById('modalInfo');
+modalInfo.innerHTML = `
+<p>hi</p>
+
+`
+
+
+   document.getElementById('my_modal').showModal()
+}
