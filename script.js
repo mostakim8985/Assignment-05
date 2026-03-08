@@ -52,7 +52,7 @@ const allIssues = (issues) => {
         const div = document.createElement('div');
         if (issue.status != 'open') {
             div.innerHTML = `
-        <div id="statusBy${issue.id}" class="shadow shadow-green-950 border-t-5 border-blue-700 p-4 rounded-xl space-y-4 h-full">
+        <div id="statusBy${issue.id}"  class="shadow shadow-green-950 border-t-5 border-blue-700 p-4 rounded-xl space-y-4 h-full">
                 <div class="flex items-center justify-between">
                     <img src="assets/Closed- Status .png" alt="">
                     <span class="badge badge-outline badge-error">${issue.priority}</span>
@@ -63,11 +63,11 @@ const allIssues = (issues) => {
                     <p class="text-[#64748B] line-clamp-2">${issue.description}</p>
                 </div>
                 <div class="space-x-2">${labelsByEl(issue.labels)}</div>
-                <div class="badge badge-success mt-3">${issue.status}</div>
+                <div class="badge badge-primary mt-3">${issue.status}</div>
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
                         <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee}</p>
+                        <p>Assignee: ${issue.assignee ? issue.assignee :'Unassigneed'}</p>
                     </div>
                     <div class="text-end space-y-4">
                         <p>${createdAt}</p>
@@ -82,7 +82,7 @@ const allIssues = (issues) => {
         }
         else {
             div.innerHTML = `
-        <div id="statusBy${issue.id}" class="shadow shadow-green-950 border-t-5 border-green-700 p-4 rounded-xl space-y-4 h-full">
+        <div id="statusBy${issue.id}" onclick="my_modal_5.showModal()" class="shadow shadow-green-950 border-t-5 border-green-700 p-4 rounded-xl space-y-4 h-full">
                 <div class="flex items-center justify-between">
                     <img src="assets/Open-Status.png" alt="">
                     <span class="badge badge-outline badge-error">${issue.priority}</span>
@@ -97,7 +97,7 @@ const allIssues = (issues) => {
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
                         <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee}</p>
+                        <p>Assignee: ${issue.assignee ? issue.assignee :'Unassigneed'}</p>
                     </div>
                     <div class="text-end space-y-4">
                         <p>${createdAt}</p>
@@ -193,7 +193,7 @@ const openIssues = (data) => {
         if (issue.status == 'open') {
             count++;
             div.innerHTML = `
-        <div id="statusBy${issue.id}" class="shadow shadow-green-950 border-t-5 border-green-700 p-4 rounded-xl space-y-4 h-full">
+        <div id="statusBy${issue.id}" onclick="my_modal_5.showModal()" class="shadow shadow-green-950 border-t-5 border-green-700 p-4 rounded-xl space-y-4 h-full">
                 <div class="flex items-center justify-between">
                     <img src="assets/Open-Status.png" alt="">
                     <span class="badge badge-outline badge-error">${issue.priority}</span>
@@ -208,7 +208,7 @@ const openIssues = (data) => {
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
                         <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee}</p>
+                        <p>Assignee: ${issue.assignee ? issue.assignee :'Unassigneed'}</p>
                     </div>
                     <div class="text-end space-y-4">
                         <p>${createdAt}</p>
@@ -262,7 +262,7 @@ const ClosedIssues = (data) => {
         if (issue.status != 'open') {
             count++;
             div.innerHTML = `
-        <div id="statusBy${issue.id}" class="shadow shadow-green-950 border-t-5 border-blue-700 p-4 rounded-xl space-y-4 h-full">
+        <div id="statusBy${issue.id}" onclick="my_modal_5.showModal()" class="shadow shadow-green-950 border-t-5 border-blue-700 p-4 rounded-xl space-y-4 h-full">
                 <div class="flex items-center justify-between">
                     <img src="assets/Closed- Status .png" alt="">
                     <span class="badge badge-outline badge-error">${issue.priority}</span>
@@ -273,11 +273,11 @@ const ClosedIssues = (data) => {
                     <p class="text-[#64748B] line-clamp-2">${issue.description}</p>
                 </div>
                 <div class="space-x-2">${labelsByEl(issue.labels)}</div>
-                <div class="badge badge-success mt-3">${issue.status}</div>
+                <div class="badge badge-primary mt-3">${issue.status}</div>
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
                         <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee}</p>
+                        <p>Assignee: ${issue.assignee ? issue.assignee :'Unassigneed'}</p>
                     </div>
                     <div class="text-end space-y-4">
                         <p>${createdAt}</p>
@@ -292,13 +292,24 @@ const ClosedIssues = (data) => {
         }
     })
 
-    countingContainer.innerHTML=`
+    countingContainer.innerHTML = `
     <h4 class="lg:text-xl font-semibold">${count} Issues</h4>
                     <p class="text-[#64748B] lg:text-[16px] text-[12px] lg:w-full w-30">Track and manage your project issues</p>
     `;
 }
 
 
+document.getElementById('searchBtn').addEventListener('click', () => {
+    const searchValue = document.getElementById('searchValue').value;
 
+    loadSearch(searchValue);
+})
+
+
+async function loadSearch(input) {
+    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${input}`);
+    const data = await res.json();
+    allIssues(data);
+}
 
 

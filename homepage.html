@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Github Issues Tracker</title>
+    <title>Github Issues Tracker</title>
     <!-- google font connected  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,8 +35,8 @@
                 </div>
             </div>
             <div class="flex gap-2">
-                <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
-                <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <input type="text" id="searchValue" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+                <button id="searchBtn" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </div>
     </header>
@@ -44,9 +44,12 @@
 
     <main class="lg:mt-18 mt-10 px-2 lg:w-5/6 mx-auto">
         <section class="lg:py-4 px-2 shadow-sm flex items-center lg:gap-4 gap-2">
-            <button onclick="toggolBtn('allBtn')" id="allBtn" class="btn btn-outline btn-primary active lg:px-10">All</button>
-            <button onclick="toggolBtn('openBtn')" id="openBtn" class="btn btn-outline btn-primary lg:px-10">Open</button>
-            <button onclick="toggolBtn('closedBtn')" id="closedBtn" class="btn btn-outline btn-primary lg:px-10">Closed</button>
+            <button onclick="toggolBtn('allBtn')" id="allBtn"
+                class="btn btn-outline btn-primary active lg:px-10">All</button>
+            <button onclick="toggolBtn('openBtn')" id="openBtn"
+                class="btn btn-outline btn-primary lg:px-10">Open</button>
+            <button onclick="toggolBtn('closedBtn')" id="closedBtn"
+                class="btn btn-outline btn-primary lg:px-10">Closed</button>
         </section>
         <section class="mt-5 flex items-center shadow-sm lg:p-2 justify-between">
             <div class="flex items-center gap-2 lg:gap-4">
@@ -55,7 +58,7 @@
                     <img src="assets/Aperture.png" alt="">
                 </div>
                 <div id="countissue">
-                    
+
                 </div>
             </div>
             <div class="lg:space-x-3">
@@ -68,9 +71,25 @@
         </section>
 
         <section id="allIssues" class="mt-6 p-2 grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-5">
-            
-            
+
+
         </section>
+
+
+
+       
+        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="text-lg font-bold">Hello!</h3>
+                <p class="py-4">Press ESC key or click the button below to close</p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
     </main>
 
     <script src="script.js"></script>
