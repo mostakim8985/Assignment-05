@@ -67,7 +67,7 @@ const allIssues = (issues) => {
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
                         <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee ? issue.assignee :'Unassigneed'}</p>
+                        <p>Assignee: ${issue.assignee ? issue.assignee :'unassigned'}</p>
                     </div>
                     <div class="text-end space-y-4">
                         <p>${createdAt}</p>
@@ -97,7 +97,7 @@ const allIssues = (issues) => {
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
                         <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee ? issue.assignee :'Unassigneed'}</p>
+                        <p>Assignee: ${issue.assignee ? issue.assignee :'unassigned'}</p>
                     </div>
                     <div class="text-end space-y-4">
                         <p>${createdAt}</p>
@@ -208,7 +208,7 @@ const openIssues = (data) => {
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
                         <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee ? issue.assignee :'Unassigneed'}</p>
+                        <p>Assignee: ${issue.assignee ? issue.assignee :'unassigned'}</p>
                     </div>
                     <div class="text-end space-y-4">
                         <p>${createdAt}</p>
@@ -277,7 +277,7 @@ const ClosedIssues = (data) => {
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
                         <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee ? issue.assignee :'Unassigneed'}</p>
+                        <p>Assignee: ${issue.assignee ? issue.assignee :'unassigned'}</p>
                     </div>
                     <div class="text-end space-y-4">
                         <p>${createdAt}</p>
