@@ -63,11 +63,11 @@ const allIssues = (issues) => {
                     <p class="text-[#64748B] line-clamp-2">${issue.description}</p>
                 </div>
                 <div class="space-x-2">${labelsByEl(issue.labels)}</div>
-                <div class="badge badge-primary mt-3">${issue.status}</div>
+                <div class="badge badge-success mt-3">${issue.status}</div>
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
                         <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee ? issue.assignee :'unassigned'}</p>
+                        <p>Assignee: ${issue.assignee ? issue.assignee : 'unassigned'}</p>
                     </div>
                     <div class="text-end space-y-4">
                         <p>${createdAt}</p>
@@ -97,7 +97,7 @@ const allIssues = (issues) => {
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
                         <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee ? issue.assignee :'unassigned'}</p>
+                        <p>Assignee: ${issue.assignee ? issue.assignee : 'unassigned'}</p>
                     </div>
                     <div class="text-end space-y-4">
                         <p>${createdAt}</p>
@@ -208,7 +208,7 @@ const openIssues = (data) => {
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
                         <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee ? issue.assignee :'unassigned'}</p>
+                        <p>Assignee: ${issue.assignee ? issue.assignee : 'unassigned'}</p>
                     </div>
                     <div class="text-end space-y-4">
                         <p>${createdAt}</p>
@@ -273,11 +273,11 @@ const ClosedIssues = (data) => {
                     <p class="text-[#64748B] line-clamp-2">${issue.description}</p>
                 </div>
                 <div class="space-x-2">${labelsByEl(issue.labels)}</div>
-                <div class="badge badge-primary mt-3">${issue.status}</div>
+                <div class="badge badge-success mt-3">${issue.status}</div>
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
                         <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee ? issue.assignee :'unassigned'}</p>
+                        <p>Assignee: ${issue.assignee ? issue.assignee : 'unassigned'}</p>
                     </div>
                     <div class="text-end space-y-4">
                         <p>${createdAt}</p>
@@ -285,9 +285,7 @@ const ClosedIssues = (data) => {
                     </div>
                 </div>
             </div>
-        
-        
-            `;
+        `;
             allIssues.appendChild(div);
         }
     })
@@ -315,21 +313,62 @@ async function loadSearch(input) {
 
 
 
-const loadModalInfo = (id) =>{
-const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
-fetch(url)
-.then((res)=> res.json())
-.then((json)=> loadModal(json.data))
+
+
+
+// "id": 33,
+// "title": "Add bulk operations support",
+// "description": "Allow users to perform bulk actions like delete, update status on multiple items at once.",
+// "status": "open",
+// "labels": [
+// "enhancement"
+// ],
+// "priority": "low",
+// "author": "bulk_barry",
+// "assignee": "",
+// "createdAt": "2024-02-02T10:00:00Z",
+// "updatedAt": "2024-02-02T10:00:00Z"
+
+
+const loadModalInfo = (id) => {
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
+    fetch(url)
+        .then((res) => res.json())
+        .then((json) => loadModal(json.data))
 }
 
 
 const loadModal = (input) => {
-const modalInfo = document.getElementById('modalInfo');
-modalInfo.innerHTML = `
-<p>hi</p>
+    console.log(input.title)
+    let createdAt = input.createdAt.split('T')[0];
+    const modalInfo = document.getElementById('modalInfo');
+    modalInfo.innerHTML = `
+<div class="space-y-2">
+                        <h3 class="text-2xl font-bold">${input.title}</h3>
+                        <div class="flex text-[#64748B] space-x-2 text-[14px]">
+                            <span class="badge badge-success">${input.status}</span>
+                            <span class="text-[6px] text-green-500 flex items-center justify-center"><i class="fa-solid fa-circle"></i></span>
+                            <span>Opened by ${input.author}</span>
+                           <span class="text-[6px] text-green-500 flex items-center justify-center"><i class="fa-solid fa-circle"></i></span>
+                            <span>${createdAt}</span>
+
+                        </div>
+                    </div>
+                    <div class="space-x-2">${labelsByEl(input.labels)}</div>
+                    <p class="text-[#64748B]">${input.description}</p>
+                    <div class="flex justify-between">
+                        <div>
+                            <p class="text-[#64748B]">Assignee:</p>
+                            <p class="font-semibold">${input.assignee ? input.assignee : 'Unassigned'}</p>
+                        </div>
+                        <div>
+                            <p class="text-[#64748B]">Priority:</p>
+                            <span class="badge badge-warning">${input.priority}</span>
+                        </div>
+                    </div>
 
 `
 
 
-   document.getElementById('my_modal').showModal()
+    document.getElementById('my_modal').showModal()
 }
