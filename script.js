@@ -38,26 +38,26 @@ const allIssues = (issues) => {
         const div = document.createElement('div');
         if (issue.status != 'open') {
             div.innerHTML = `
-        <div id="statusBy${issue.id}" onclick="loadModalInfo(${issue.id})" class="shadow shadow-green-950 border-t-5 border-blue-700 p-4 rounded-xl space-y-4 h-full">
+        <div id="statusBy${issue.id}" onclick="loadModalInfo(${issue.id})" class="shadow shadow-green-950 border-t-5 border-blue-700 p-4 rounded-xl space-y-2 lg:space-y-4 h-full">
                 <div class="flex items-center justify-between">
                     <img src="assets/Closed- Status .png" alt="">
                     <span class="badge badge-outline badge-error">${issue.priority}</span>
                 </div>
 
                 <div class="space-y-2">
-                    <h3 class="text-xl font-semibold lg:w-[70%]">${issue.title}</h3>
-                    <p class="text-[#64748B] line-clamp-2">${issue.description}</p>
+                    <h3 class="lg:text-xl text-[16px]  font-semibold lg:w-[70%]">${issue.title}</h3>
+                    <p class="text-[#64748B] text-[14px] lg:text-[16px] line-clamp-2">${issue.description}</p>
                 </div>
                 <div class="space-x-2">${labelsByEl(issue.labels)}</div>
                 <div class="badge badge-success mt-3">${issue.status}</div>
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
-                        <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee ? issue.assignee : 'unassigned'}</p>
+                        <p class="text-[10px] lg:text-[16px]">#${issue.id} by ${issue.author}</p>
+                        <p class="text-[10px] lg:text-[16px]">Assignee: ${issue.assignee ? issue.assignee : 'unassigned'}</p>
                     </div>
                     <div class="text-end space-y-4">
-                        <p>${createdAt}</p>
-                        <p>Updated: ${updatedAt}</p>
+                        <p class="text-[10px] lg:text-[16px]">${createdAt}</p>
+                        <p class="text-[10px] lg:text-[16px]">Updated: ${updatedAt}</p>
                     </div>
                 </div>
             </div>
@@ -68,26 +68,26 @@ const allIssues = (issues) => {
         }
         else {
             div.innerHTML = `
-        <div id="statusBy${issue.id}" onclick="loadModalInfo(${issue.id})" class="shadow shadow-green-950 border-t-5 border-green-700 p-4 rounded-xl space-y-4 h-full">
+        <div id="statusBy${issue.id}" onclick="loadModalInfo(${issue.id})" class="shadow shadow-green-950 border-t-5 border-green-700 p-4 rounded-xl space-y-2 lg:space-y-4 h-full">
                 <div class="flex items-center justify-between">
                     <img src="assets/Open-Status.png" alt="">
                     <span class="badge badge-outline badge-error">${issue.priority}</span>
                 </div>
 
                 <div class="space-y-2">
-                    <h3 class="text-xl font-semibold lg:w-[70%]">${issue.title}</h3>
-                    <p class="text-[#64748B] line-clamp-2">${issue.description}</p>
+                    <h3 class="text-[16px] lg:text-xl  font-semibold lg:w-[70%]">${issue.title}</h3>
+                    <p class="text-[#64748B] text-[14px] lg:text-[16px] line-clamp-2">${issue.description}</p>
                 </div>
                 <div class="space-x-2">${labelsByEl(issue.labels)}</div>
                 <div class="badge badge-success mt-3">${issue.status}</div>
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
-                    <div class="space-y-4">
-                        <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee ? issue.assignee : 'unassigned'}</p>
+                    <div class="space-y-4 ">
+                        <p class="text-[10px] lg:text-[16px]">#${issue.id} by ${issue.author}</p>
+                        <p class="text-[10px] lg:text-[16px]">Assignee: ${issue.assignee ? issue.assignee : 'unassigned'}</p>
                     </div>
                     <div class="text-end space-y-4">
-                        <p>${createdAt}</p>
-                        <p>Updated: ${updatedAt}</p>
+                        <p class="text-[10px] lg:text-[16px]">${createdAt}</p>
+                        <p class="text-[10px] lg:text-[16px]">Updated: ${updatedAt}</p>
                     </div>
                 </div>
             </div>
@@ -182,26 +182,26 @@ const openIssues = (data) => {
         if (issue.status == 'open') {
             count++;
             div.innerHTML = `
-        <div id="statusBy${issue.id}" onclick="loadModalInfo(${issue.id})" class="shadow shadow-green-950 border-t-5 border-green-700 p-4 rounded-xl space-y-4 h-full">
+        <div id="statusBy${issue.id}" onclick="loadModalInfo(${issue.id})" class="shadow shadow-green-950 border-t-5 border-green-700 p-4 rounded-xl space-y-2 lg:space-y-4 h-full">
                 <div class="flex items-center justify-between">
                     <img src="assets/Open-Status.png" alt="">
                     <span class="badge badge-outline badge-error">${issue.priority}</span>
                 </div>
 
                 <div class="space-y-2">
-                    <h3 class="text-xl font-semibold lg:w-[70%]">${issue.title}</h3>
-                    <p class="text-[#64748B] line-clamp-2">${issue.description}</p>
+                    <h3 class="lg:text-xl text-[16px] font-semibold lg:w-[70%]">${issue.title}</h3>
+                    <p class="text-[#64748B] text-14px lg:text-[16px] line-clamp-2">${issue.description}</p>
                 </div>
                 <div class="space-x-2">${labelsByEl(issue.labels)}</div>
                 <div class="badge badge-success mt-3">${issue.status}</div>
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
-                        <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee ? issue.assignee : 'unassigned'}</p>
+                        <p class="text-[10px] lg:text-[16px]">#${issue.id} by ${issue.author}</p>
+                        <p class="text-[10px] lg:text-[16px]">Assignee: ${issue.assignee ? issue.assignee : 'unassigned'}</p>
                     </div>
                     <div class="text-end space-y-4">
-                        <p>${createdAt}</p>
-                        <p>Updated: ${updatedAt}</p>
+                        <p class="text-[10px] lg:text-[16px]">${createdAt}</p>
+                        <p class="text-[10px] lg:text-[16px]">Updated: ${updatedAt}</p>
                     </div>
                 </div>
             </div>
@@ -253,26 +253,26 @@ const ClosedIssues = (data) => {
         if (issue.status != 'open') {
             count++;
             div.innerHTML = `
-        <div id="statusBy${issue.id}" onclick="loadModalInfo(${issue.id})" class="shadow shadow-green-950 border-t-5 border-blue-700 p-4 rounded-xl space-y-4 h-full">
+        <div id="statusBy${issue.id}" onclick="loadModalInfo(${issue.id})" class="shadow shadow-green-950 border-t-5 border-blue-700 p-4 rounded-xl space-y-2 lg:space-y-4 h-full">
                 <div class="flex items-center justify-between">
                     <img src="assets/Closed- Status .png" alt="">
                     <span class="badge badge-outline badge-error">${issue.priority}</span>
                 </div>
 
                 <div class="space-y-2">
-                    <h3 class="text-xl font-semibold lg:w-[70%]">${issue.title}</h3>
-                    <p class="text-[#64748B] line-clamp-2">${issue.description}</p>
+                    <h3 class="lg:text-xl text-[16px] font-semibold lg:w-[70%]">${issue.title}</h3>
+                    <p class="text-[#64748B] text-[14px] lg:text-[16px] line-clamp-2">${issue.description}</p>
                 </div>
                 <div class="space-x-2">${labelsByEl(issue.labels)}</div>
                 <div class="badge badge-success mt-3">${issue.status}</div>
                                <div class="flex items-center justify-between lg:mt-20 text-[#64748B]">
                     <div class="space-y-4">
-                        <p>#${issue.id} by ${issue.author}</p>
-                        <p>Assignee: ${issue.assignee ? issue.assignee : 'unassigned'}</p>
+                        <p class="text-[10px] lg:text-[16px]">#${issue.id} by ${issue.author}</p>
+                        <p class="text-[10px] lg:text-[16px]">Assignee: ${issue.assignee ? issue.assignee : 'unassigned'}</p>
                     </div>
                     <div class="text-end space-y-4">
-                        <p>${createdAt}</p>
-                        <p>Updated: ${updatedAt}</p>
+                        <p class="text-[10px] lg:text-[16px]">${createdAt}</p>
+                        <p class="text-[10px] lg:text-[16px]">Updated: ${updatedAt}</p>
                     </div>
                 </div>
             </div>
