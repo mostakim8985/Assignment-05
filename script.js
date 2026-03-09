@@ -1,9 +1,11 @@
 async function loadAllIssues() {
+    spinnerShow(true)
     const res = await fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues');
     const data = await res.json();
+    spinnerShow(true)
     allIssues(data)
 }
-loadAllIssues();
+
 
 
 
@@ -122,6 +124,7 @@ const allIssues = (issues) => {
     <h4 class="lg:text-xl font-semibold">${count} Issues</h4>
                     <p class="text-[#64748B] lg:text-[16px] text-[12px] lg:w-full w-30">Track and manage your project issues</p>
     `;
+    spinnerShow(false)
 }
 
 
@@ -156,6 +159,7 @@ document.getElementById('allBtn').addEventListener('click', () => {
 
 // Load Open Section
 async function loadOpenIssues() {
+    spinnerShow(true)
     const res = await fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues');
     const data = await res.json();
     openIssues(data.data);
@@ -180,6 +184,7 @@ document.getElementById('openBtn').addEventListener('click', () => {
 
 
 const openIssues = (data) => {
+
     const countingContainer = document.getElementById('countissue');
     const allIssues = document.getElementById('allIssues');
     let count = 0;
@@ -222,6 +227,7 @@ const openIssues = (data) => {
             allIssues.appendChild(div);
         }
     })
+    spinnerShow(false)
 
     countingContainer.innerHTML = `
     <h4 class="lg:text-xl font-semibold">${count} Issues</h4>
@@ -238,6 +244,7 @@ const openIssues = (data) => {
 
 
 async function loadClosedIssues() {
+    spinnerShow(true)
     const res = await fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues');
     const data = await res.json();
     ClosedIssues(data.data);
@@ -289,6 +296,7 @@ const ClosedIssues = (data) => {
             allIssues.appendChild(div);
         }
     })
+    spinnerShow(false)
 
     countingContainer.innerHTML = `
     <h4 class="lg:text-xl font-semibold">${count} Issues</h4>
@@ -305,6 +313,7 @@ document.getElementById('searchBtn').addEventListener('click', () => {
 
 
 async function loadSearch(input) {
+    spinnerShow(true)
     const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${input}`);
     const data = await res.json();
     allIssues(data);
@@ -372,3 +381,21 @@ const loadModal = (input) => {
 
     document.getElementById('my_modal').showModal()
 }
+
+
+const spinnerShow = (input) => {
+    if (input == true) {
+        const spinner = document.getElementById('spinner');
+        spinner.classList.remove('hidden')
+        
+        spinner.classList.add('flex')
+
+        document.getElementById('allIssues').classList.add('hidden');
+    }
+    else {
+        document.getElementById('allIssues').classList.remove('hidden');
+
+        document.getElementById('spinner').classList.add('hidden');
+    }
+}
+loadAllIssues();
